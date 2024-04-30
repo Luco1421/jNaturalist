@@ -159,7 +159,6 @@
 }
 
   .card {
-    --pink-500: #fda8ff;
     --red-400: #f56767;
     --sky-300: #bbefff;
     --blue-500: #00a3fe;
@@ -302,12 +301,12 @@
     border-radius: 10px;
   }
 
-  button {
+  .bn {
     border-radius: 10px;
     background-color: #a3e583;
   }
-
-  button:hover {
+  
+  .bn:hover {
     border-radius: 15px;
     background-color: #7cde4b;
   }
