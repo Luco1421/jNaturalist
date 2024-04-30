@@ -302,12 +302,12 @@
     border-radius: 10px;
   }
 
-  .clas {
+  button {
     border-radius: 10px;
     background-color: #a3e583;
   }
 
-  .clas:hover {
+  button:hover {
     border-radius: 15px;
     background-color: #7cde4b;
   }

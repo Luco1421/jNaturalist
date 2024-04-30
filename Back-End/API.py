@@ -29,6 +29,11 @@ def returnFun(l,tipo):
     data = cursor.callfunc(l[0],tipo,l[1:])
     return data
 
+def cursorPy(l):
+    result_set = cursor.var(oracledb.CURSOR)
+    cursor.execute(f"BEGIN :result := ADMIN.{l[0]}(:param); END;", result = result_set, param = l[1])
+    return jsonify(result_set.getvalue())
+
 @app.route('/insertar', methods=['POST'])
 def insertar():
     query = request.form.get('query')
@@ -52,6 +57,12 @@ def funcionSQL2():
     datos = request.get_json()
     print(datos)
     return returnFun(datos,int)
+
+@app.route('/funcionSQL3', methods=['POST'])
+def funcionSQL3():
+    datos = request.get_json()
+    print(datos)
+    return cursorPy(datos)
 
 @app.route('/upload', methods=['POST'])
 def upload():
