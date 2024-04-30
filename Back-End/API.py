@@ -32,7 +32,7 @@ def returnFun(l,tipo):
 def cursorPy(l):
     result_set = cursor.var(oracledb.CURSOR)
     cursor.execute(f"BEGIN :result := ADMIN.{l[0]}(:param); END;", result = result_set, param = l[1])
-    return result_set.getvalue()
+    return list(result_set.getvalue())
 
 @app.route('/insertar', methods=['POST'])
 def insertar():
