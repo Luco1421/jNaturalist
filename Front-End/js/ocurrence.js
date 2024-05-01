@@ -79,12 +79,13 @@ document.getElementById('seFue').addEventListener('click', async function(event)
 
     let license_id = await obtenerGOD('License','name',db_license,false,'id_license',0);
     let location_id = await obtenerLatlon(db_latitude,db_longitude);
-    let owner_id = await obtenerGOD('User_','name',db_owner,false,'id_user',0)[0];
     let db_url = await obtenerURL();
     let mail_id = await obtenerGOD('Mail','name',sessionStorage.getItem("username"),false,'id_mail',0);
     let user_id = await obtenerGOD('User_','mail',mail_id,false,'id_user',1);
     
-    if (owner_id == -1) owner_id = user_id;
+    let owner_id;
+    if (db_owner) owner_id = await obtenerGOD('User_','name',db_owner,false,'id_user',0);
+    else owner_id = user_id;
     await insertar(`insert into Image(url,license,location,owner) values('${db_url}',${license_id},${location_id},${owner_id})`);
     
     let image_id = await obtenerGOD('Image','url',db_url,false,'id_image',0);
