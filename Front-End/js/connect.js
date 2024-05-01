@@ -77,7 +77,7 @@ async function obtenerGOD(tabla,columna,valor,unique,id,num) {
     } else if (temp==0) {
         let temp3 = await obtener(`select max(${id}) from ${tabla}`);
         temp3++;
-        await insertar(`insert into ${tabla} values (${temp3}, '${valor}')`);
+        await insertar(`insert into ${tabla}(name) values (${temp3}, '${valor}')`);
         return temp3;
     }
 }

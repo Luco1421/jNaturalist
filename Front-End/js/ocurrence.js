@@ -79,7 +79,7 @@ document.getElementById('seFue').addEventListener('click', async function(event)
 
     let license_id = await obtenerGOD('License','name',db_license,false,'id_license',0);
     let location_id = await obtenerLatlon(db_latitude,db_longitude);
-    let owner_id = await obtenerGOD('User_','name',db_owner,false,'id_user',0);
+    let owner_id = await obtenerGOD('User_','name',db_owner,false,'id_user',0)[0];
     let db_url = await obtenerURL();
     let mail_id = await obtenerGOD('Mail','name',sessionStorage.getItem("username"),false,'id_mail',0);
     let user_id = await obtenerGOD('User_','mail',mail_id,false,'id_user',1);
@@ -88,7 +88,8 @@ document.getElementById('seFue').addEventListener('click', async function(event)
     await insertar(`insert into Image(url,license,location,owner) values('${db_url}',${license_id},${location_id},${owner_id})`);
     
     let image_id = await obtenerGOD('Image','url',db_url,false,'id_image',0);
-    await insertar2(['ADMIN.Autocomplete',image_id[0][0],user_id[0][0],db_date,db_note,db_taxon]);
+    let result = await insertar2(['ADMIN.Autocomplete',image_id[0][0],user_id[0][0],db_date,db_note,db_taxon]);
+    alert(result);
     
     alert("Imagen subida con éxito");
     window.location.href = "principal.html";
