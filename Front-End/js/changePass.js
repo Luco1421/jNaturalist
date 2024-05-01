@@ -27,35 +27,3 @@ document.getElementById("change").addEventListener('click', async function(event
     }
     return;
 });
-
-function obtener(query) {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            type: "POST",
-            url: "https://server-jnaturalist.onrender.com/obtener",
-            data: { query: query },
-            success: function(i) {
-                resolve(i);
-            },
-            error: function(xhr, status, error) {
-                reject(error);
-            }
-        });
-    });
-}
-
-function insertar(query) {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            type: "POST",
-            url: "https://server-jnaturalist.onrender.com/insertar",
-            data: { query: query },
-            success: function(i) {
-                resolve(i);
-            },
-            error: function(xhr, status, error) {
-                reject(error);
-            }
-        });
-    });
-}

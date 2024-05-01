@@ -37,19 +37,3 @@ async function crearCartas() {
 }
 
 crearCartas();
-
-function obtener(query) {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            type: "POST",
-            url: "https://server-jnaturalist.onrender.com/obtener",
-            data: { query: query },
-            success: function(i) {
-                resolve(i);
-            },
-            error: function(xhr, status, error) {
-                reject(error);
-            }
-        });
-    });
-}

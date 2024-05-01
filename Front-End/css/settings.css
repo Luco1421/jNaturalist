@@ -3,15 +3,21 @@
     flex-direction: column;
     gap: 10px;
     max-width: 350px;
-    background-color: #fff;
+    background-color: #2f2f2f;
     padding: 20px;
     border-radius: 20px;
     position: relative;
+    
+  }
+  
+  input {
+      background-color:rgba(88, 87, 87, 0.822);
+      color: aliceblue;
   }
   
   .title {
     font-size: 28px;
-    color: royalblue;
+    color: aliceblue;
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -27,13 +33,13 @@
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: rgb(140, 240, 105);
   }
   
   .title::before {
     width: 18px;
     height: 18px;
-    background-color: royalblue;
+    background-color: rgb(155, 240, 120);
   }
   
   .title::after {
@@ -52,11 +58,11 @@
   }
   
   .signin a {
-    color: royalblue;
+    color: rgb(140, 215, 130);
   }
   
   .signin a:hover {
-    text-decoration: underline royalblue;
+    text-decoration: underline rgb(140, 215, 130);
   }
   
   .flex {
@@ -81,7 +87,7 @@
     position: absolute;
     left: 10px;
     top: 15px;
-    color: grey;
+    color: whitesmoke;
     font-size: 0.9em;
     cursor: text;
     transition: 0.3s ease;
@@ -99,13 +105,13 @@
   }
   
   .form label .input:valid + span {
-    color: green;
+    color: rgb(165, 225, 165);
   }
   
   .submit {
     border: none;
     outline: none;
-    background-color: royalblue;
+    background-color: rgb(140, 215, 130);
     padding: 10px;
     border-radius: 10px;
     color: #fff;
@@ -114,7 +120,7 @@
   }
   
   .submit:hover {
-    background-color: rgb(56, 90, 194);
+    background-color: rgb(104, 210, 90);
   }
   
   @keyframes pulse {
