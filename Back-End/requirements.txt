@@ -1,0 +1,8 @@
+Flask
+jsonify
+CORS
+flask_cors
+requests
+oracledb
+gunicorn
+boto3
