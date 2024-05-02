@@ -1,5 +1,8 @@
 document.getElementById("change").addEventListener('click', async function(event) {
     event.preventDefault();
+
+    document.querySelector(".load").removeAttribute('hidden');
+
     let namee = document.getElementById("n").value;
     let lastname = document.getElementById("lstn").value;
     let lastname2 = document.getElementById("lstn2").value;
@@ -12,6 +15,7 @@ document.getElementById("change").addEventListener('click', async function(event
         return;
     }
     alert('datos incompletos');
+    document.querySelector(".load").setAttribute('hidden','');
 });
 
 function insertar(query) {
