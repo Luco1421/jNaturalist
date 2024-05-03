@@ -87,11 +87,18 @@ document.getElementById('seFue').addEventListener('click', async function(event)
     if (owner_id == -1) owner_id = user_id;
     await insertar(`insert into Image(url,license,location,owner) values('${db_url}',${license_id},${location_id},${owner_id})`);
     
-    let image_id = await obtenerGOD('Image','url',db_url,false,'id_image',0);
-    await insertar2(['ADMIN.Autocomplete',image_id[0][0],user_id[0][0],db_date,db_note,db_taxon]);
+    let valid = await obtener(`SELECT COUNT(*) FROM Kingdom k LEFT JOIN Phylum p ON k.id_Kingdom = p.id_Kingdom LEFT JOIN Class c ON p.id_Phylum = c.id_Phylum LEFT JOIN Order_ o ON c.id_Class = o.id_Class LEFT JOIN Family f ON o.id_Order_ = f.id_Order_ LEFT JOIN Genus g ON f.id_Family = g.id_Family LEFT JOIN Species s ON g.id_Genus = s.id_Genus WHERE k.name_Kingdom = '${db_taxon}' OR p.name_Phylum = '${db_taxon}' OR c.name_Class = '${db_taxon}' OR o.name_Order_ = '${db_taxon}' OR f.name_Family = '${db_taxon}' OR g.name_Genus = '${db_taxon}' OR s.name_Species = '${db_taxon}'`);
     
-    alert("Imagen subida con éxito");
-    window.location.href = "principal.html";
+    if(valid) {
+        let image_id = await obtenerGOD('Image','url',db_url,false,'id_image',0);
+        await insertar2(['ADMIN.Autocomplete',image_id[0][0],user_id[0][0],db_date,db_note,db_taxon]);
+        
+        alert("Imagen subida con éxito");
+        window.location.href = "principal.html";
+    }
+    else {
+        alert('El taxon no existe');
+    }
 });
 
 async function obtenerURL() {
