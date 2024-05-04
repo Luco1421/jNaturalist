@@ -3,6 +3,12 @@ let taxonAct = sessionStorage.getItem('taxon');
 document.getElementById('change').addEventListener('click', async function(e) {
     let newName = document.getElementById('n').value;
     let newComment = document.getElementById('lstn').value;
+
+    if (!newName) {
+        alert("datos incompletos");
+        return;
+    }
+
     let valid = await obtener(`SELECT COUNT(*) FROM Kingdom k LEFT JOIN Phylum p ON k.id_Kingdom = p.id_Kingdom LEFT JOIN Class c ON p.id_Phylum = c.id_Phylum LEFT JOIN Order_ o ON c.id_Class = o.id_Class LEFT JOIN Family f ON o.id_Order_ = f.id_Order_ LEFT JOIN Genus g ON f.id_Family = g.id_Family LEFT JOIN Species s ON g.id_Genus = s.id_Genus WHERE k.name_Kingdom = '${newName}' OR p.name_Phylum = '${newName}' OR c.name_Class = '${newName}' OR o.name_Order_ = '${newName}' OR f.name_Family = '${newName}' OR g.name_Genus = '${newName}' OR s.name_Species = '${newName}'`);
     if(valid) {
          insertar2(['updateProc',taxonAct, newName, newComment]);
@@ -13,9 +19,11 @@ document.getElementById('change').addEventListener('click', async function(e) {
     alert('No se encontro ese taxon');
 });
 
-// document.getElementById('remove').addEventListener('click', function(e) {
-
-// });
+document.getElementById('remove').addEventListener('click', async function(e) {
+    await insertar(`delete from occurrence where id_occurrence = ${taxonAct}`);
+    alert("registro eliminado");
+    window.location.href = "principal.html";
+});
 
 function obtener(query) {
     return new Promise((resolve, reject) => {
