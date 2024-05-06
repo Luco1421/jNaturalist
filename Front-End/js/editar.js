@@ -13,7 +13,7 @@ document.getElementById('change').addEventListener('click', async function(e) {
     if(valid) {
          insertar2(['updateProc',taxonAct, newName, newComment]);
          alert('Se actualizo el registro');
-         window.location.href = 'home.html';
+         window.location.href = 'principal.html';
          return;
     }
     alert('No se encontro ese taxon');
